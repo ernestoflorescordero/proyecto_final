@@ -1,28 +1,35 @@
 import random
 
-# configuracion inicial
-caras_dado = 6
-l = 2
+CARAS_DADO = 6
+CANTIDAD_DADOS = 2
 
 
-def simularTirada(puntajeObjetivo, nombreJugadorQueParticipaEnLaRondaActual):
-    # print("Lanzando dados a la mesa...")
-    d1 = random.randint(1, caras_dado)
-    d2 = random.randint(1, caras_dado)
-    tot = d1 + d2
+def simular_tirada(puntaje_objetivo, nombre_jugador):
+    """Simula el tiro de dos dados y evalua si su suma
+    supera el puntaje meta.
+    """
+    dado_uno = random.randint(1, CARAS_DADO)
+    dado_dos = random.randint(1, CARAS_DADO)
+    puntaje_total = dado_uno + dado_dos
 
-    # Evaluacion de resultado
-    if tot >= puntajeObjetivo:
-        print("Felicidades " + nombreJugadorQueParticipaEnLaRondaActual + ", tus dados sumaron " + str(tot) + " y alcanzaste la meta!")
+    if puntaje_total >= puntaje_objetivo:
+        mensaje = (
+            f"Felicidades {nombre_jugador}, tus dados sumaron "
+            f"{puntaje_total} y alcanzaste la meta!"
+        )
+        print(mensaje)
     else:
-        # print("No alcanzo los puntos necesarios")
-        print("Mala suerte " + nombreJugadorQueParticipaEnLaRondaActual + ", solo sumaste " + str(tot) + " puntos.")
+        mensaje = (
+            f"Mala suerte {nombre_jugador}, solo sumaste "
+            f"{puntaje_total} puntos."
+        )
+        print(mensaje)
 
-    return tot
+    return puntaje_total
 
 
-# Flujo principal interactivo
-n = input("Ingrese el nombre del jugador: ")
-meta = int(input("Cual es el numero meta que deseas alcanzar (2 al 12)?: "))
-resultado = simularTirada(meta, n)
-print(resultado)
+nombre = input("Ingrese el nombre del jugador: ")
+meta_objetivo = int(input("Cual es el numero meta que deseas alcanzar?: "))
+
+resultado_final = simular_tirada(meta_objetivo, nombre)
+print(resultado_final)
